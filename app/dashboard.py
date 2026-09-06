@@ -808,12 +808,12 @@ with tab4:
     st.markdown('<div class="eyebrow">Feature importance (24h model)</div>', unsafe_allow_html=True)
     st.markdown('<div class="card">', unsafe_allow_html=True)
 
+    if data_source == "live" and models:
     model_summary = " · ".join(
         f"+{h}h: {models[h]['meta']['best_model_type'].replace('_', ' ').title()}"
         for h in HORIZONS
     )
-    if data_source == "live":
-        st.caption(f"Models used -- {model_summary}")
+    st.caption(f"Models used -- {model_summary}")
 
     # importances_df is already computed early, just display it here
     st.bar_chart(importances_df.set_index("feature"), horizontal=True, color="#4FA8D8")
