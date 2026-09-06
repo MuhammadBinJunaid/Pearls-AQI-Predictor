@@ -1,0 +1,29 @@
+name: Daily Training Pipeline
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # once a day at 03:00 UTC
+  workflow_dispatch:
+
+jobs:
+  run-training-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install pandas numpy python-dotenv hopsworks confluent-kafka scikit-learn tensorflow joblib
+
+      - name: Run training pipeline
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+          HOPSWORKS_PROJECT: ${{ secrets.HOPSWORKS_PROJECT }}
+        run: python training_pipeline/train_model.py

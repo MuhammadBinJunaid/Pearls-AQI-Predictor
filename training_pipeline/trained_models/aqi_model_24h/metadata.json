@@ -1,0 +1,45 @@
+{
+  "horizon_hours": 24,
+  "best_model_type": "tensorflow",
+  "is_keras": true,
+  "feature_cols": [
+    "aqi",
+    "pm25",
+    "pm10",
+    "o3",
+    "no2",
+    "so2",
+    "co",
+    "temperature",
+    "humidity",
+    "pressure",
+    "wind_speed",
+    "hour",
+    "day_of_week",
+    "day",
+    "month",
+    "aqi_change_rate"
+  ],
+  "metrics": {
+    "rmse": 22.28403362115647,
+    "mae": 15.098671070631523,
+    "r2": 0.6326522118087254
+  },
+  "all_candidates": {
+    "ridge": {
+      "rmse": 24.965117510902488,
+      "mae": 16.590649952785107,
+      "r2": 0.5389404219634724
+    },
+    "random_forest": {
+      "rmse": 22.872692298232096,
+      "mae": 15.39921415593637,
+      "r2": 0.6129880329724461
+    },
+    "tensorflow": {
+      "rmse": 22.28403362115647,
+      "mae": 15.098671070631523,
+      "r2": 0.6326522118087254
+    }
+  }
+}

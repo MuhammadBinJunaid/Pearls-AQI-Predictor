@@ -1,0 +1,13 @@
+requests
+pandas
+numpy
+python-dotenv
+hopsworks
+confluent-kafka
+scikit-learn
+tensorflow
+streamlit
+shap
+matplotlib
+joblib
+plotly

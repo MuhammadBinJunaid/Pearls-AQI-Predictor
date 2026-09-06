@@ -1,0 +1,30 @@
+name: Hourly Feature Pipeline
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour, on the hour (UTC)
+  workflow_dispatch:        # allows manual trigger from the Actions tab
+
+jobs:
+  run-feature-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install requests pandas numpy python-dotenv hopsworks confluent-kafka
+
+      - name: Run feature pipeline (live mode)
+        env:
+          HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+          HOPSWORKS_PROJECT: ${{ secrets.HOPSWORKS_PROJECT }}
+          AQI_CITIES: ${{ secrets.AQI_CITIES }}
+        run: python feature_pipeline.py --mode live
