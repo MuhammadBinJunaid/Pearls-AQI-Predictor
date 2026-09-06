@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install requests pandas numpy python-dotenv hopsworks confluent-kafka
+          pip install requests pandas numpy python-dotenv hopsworks confluent-kafka pyarrow
 
       - name: Run feature pipeline (live mode)
         env:
