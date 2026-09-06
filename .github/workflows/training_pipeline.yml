@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install pandas numpy python-dotenv hopsworks confluent-kafka scikit-learn tensorflow joblib
+          pip install pandas numpy python-dotenv hopsworks confluent-kafka scikit-learn tensorflow joblib pyarrow
 
       - name: Run training pipeline
         env:
